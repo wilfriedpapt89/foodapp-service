@@ -3,7 +3,7 @@ package com.crostsoft.foodapp.entity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.data.annotation.CreatedDate;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.math.BigDecimal;
 import java.time.OffsetDateTime;
@@ -13,15 +13,15 @@ import java.util.Set;
 @Entity
 @Getter
 @Setter
-public class Order {
+public class CustomerOrder {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @CreatedDate
-    private OffsetDateTime creationDate;
-    @OneToMany(fetch = FetchType.LAZY, orphanRemoval = true, cascade = CascadeType.ALL)
-    private Set<Meal> orderDetails = new HashSet<>();
+    @CreationTimestamp
+    private OffsetDateTime createdAt;
+    @OneToMany(mappedBy = "orderId",fetch = FetchType.LAZY, orphanRemoval = true, cascade = CascadeType.ALL)
+    private Set<CustomerOrderDetail> orderDetails = new HashSet<>();
     private BigDecimal total;
     private BigDecimal qty;
 }

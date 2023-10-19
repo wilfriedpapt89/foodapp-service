@@ -1,11 +1,11 @@
 package com.crostsoft.foodapp.service;
 
-import com.crostsoft.foodapp.entity.Order;
+import com.crostsoft.foodapp.entity.CustomerOrder;
 
 public interface OrderService {
 
-    Order createOrder(Order order);
-    Order findOrderById (Long orderId);
+    CustomerOrder createOrder(CustomerOrder order);
+    CustomerOrder findOrderById (Long orderId);
     void deleteOrderById(Long orderId);
 
 }

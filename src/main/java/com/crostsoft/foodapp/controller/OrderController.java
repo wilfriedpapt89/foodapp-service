@@ -1,6 +1,6 @@
 package com.crostsoft.foodapp.controller;
 
-import com.crostsoft.foodapp.entity.Order;
+import com.crostsoft.foodapp.entity.CustomerOrder;
 import com.crostsoft.foodapp.service.OrderService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -15,12 +15,12 @@ public class OrderController {
     private final OrderService orderService;
 
     @PostMapping
-    public ResponseEntity<Order> createOrder(@RequestBody Order order){
+    public ResponseEntity<CustomerOrder> createOrder(@RequestBody CustomerOrder order){
         return new ResponseEntity<>(orderService.createOrder(order), HttpStatus.CREATED);
     }
 
     @GetMapping("/{orderId}")
-    public ResponseEntity<Order> findOrderById(@PathVariable Long orderId){
+    public ResponseEntity<CustomerOrder> findOrderById(@PathVariable Long orderId){
         return new ResponseEntity<>(orderService.findOrderById(orderId), HttpStatus.OK);
     }
 }
