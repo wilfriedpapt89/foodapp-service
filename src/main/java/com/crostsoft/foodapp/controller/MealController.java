@@ -19,6 +19,17 @@ public class MealController {
     private final MealService mealService;
     @GetMapping("/all")
     public ResponseEntity<List<Meal>> getAllMeals(){
+
+        Thread local = Thread.currentThread();
+           synchronized (local){
+               try {
+                   local.wait(5_000);
+               } catch (InterruptedException e) {
+                   throw new RuntimeException(e);
+               }
+           }
+
+
         return new ResponseEntity<>(mealService.getAll(), HttpStatus.OK);
     }
 }
